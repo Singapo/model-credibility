@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ModelCred · 模型可信度指数</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --canvas: #eeefe9;
+      --surface-soft: #e5e7e0;
+      --surface-card: #ffffff;
+      --surface-doc: #fcfcfa;
+      --surface-dark: #23251d;
+      --ink: #23251d;
+      --body: #4d4f46;
+      --charcoal: #33342d;
+      --mute: #6c6e63;
+      --ash: #9b9c92;
+      --stone: #b6b7af;
+      --hairline: #bfc1b7;
+      --hairline-soft: #dcdfd2;
+      --primary: #f7a501;
+      --primary-pressed: #dd9001;
+      --on-primary: #23251d;
+      --link-blue: #1d4ed8;
+      --link-teal: #1078a3;
+      --accent-blue: #2c84e0;
+      --accent-blue-soft: #dceaf6;
+      --accent-red: #cd4239;
+      --accent-red-soft: #f7d6d3;
+      --accent-green: #2c8c66;
+      --accent-green-soft: #d9eddf;
+      --accent-purple: #7c44a6;
+      --accent-purple-soft: #e7d8ee;
+      --success: #2c8c66;
+      --warning: #b17816;
+      --danger: #cd4239;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "IBM Plex Sans", -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+      background: var(--canvas);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Nav */
+    nav {
+      height: 56px;
+      background: var(--canvas);
+      border-bottom: 1px solid var(--hairline-soft);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--on-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--body);
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-cta { display: flex; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 0 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .btn-primary:hover { background: var(--primary-pressed); }
+
+    .btn-secondary {
+      background: var(--surface-soft);
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover { background: var(--hairline-soft); }
+
+    /* Hero */
+    .hero {
+      padding: 96px 0 80px;
+      text-align: center;
+      background: var(--canvas);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--surface-card);
+      border: 1px solid var(--hairline);
+      color: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.33;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--body);
+      max-width: 560px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .hero-actions .btn { height: 40px; padding: 0 18px; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      line-height: 1.33;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--body);
+      margin-top: 6px;
+    }
+
+    /* Provider Board */
+    .provider-board {
+      background: var(--surface-card);
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .board-header {
+      display: grid;
+      grid-template-columns: 60px 2fr 120px 120px 140px;
+      gap: 16px;
+      padding: 14px 20px;
+      background: var(--surface-doc);
+      border-bottom: 1px solid var(--hairline-soft);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--body);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .board-row {
+      display: grid;
+      grid-template-columns: 60px 2fr 120px 120px 140px;
+      gap: 16px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--hairline-soft);
+      align-items: center;
+    }
+
+    .board-row:last-child { border-bottom: none; }
+
+    .rank {
+      font-size: 14px;
+      color: var(--ash);
+      font-variant-numeric: tabular-nums;
+      font-weight: 500;
+    }
+
+    .provider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .provider-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: var(--surface-soft);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .provider-name { font-weight: 600; font-size: 15px; }
+    .provider-meta { font-size: 12px; color: var(--mute); margin-top: 2px; }
+
+    .score {
+      font-size: 18px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .score.high { color: var(--success); }
+    .score.mid { color: var(--warning); }
+    .score.low { color: var(--danger); }
+
+    .trend {
+      font-size: 13px;
+      color: var(--mute);
+      font-weight: 500;
+    }
+
+    .reviews {
+      font-size: 13px;
+      color: var(--body);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Cloud Group */
+    .clouds {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .cloud-group {
+      background: var(--surface-card);
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .cloud-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--surface-doc);
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+
+    .cloud-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .cloud-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--body);
+      background: var(--surface-soft);
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .cloud-score {
+      font-size: 14px;
+      color: var(--mute);
+      font-weight: 500;
+    }
+
+    .cloud-score strong {
+      color: var(--ink);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .model-row {
+      display: grid;
+      grid-template-columns: 1.8fr 120px 120px 140px 100px;
+      gap: 16px;
+      padding: 16px 20px 16px 52px;
+      border-bottom: 1px solid var(--hairline-soft);
+      align-items: center;
+    }
+
+    .model-row:last-child { border-bottom: none; }
+
+    .model {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .model-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--surface-soft);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .model-name { font-weight: 600; font-size: 14px; }
+    .model-meta { font-size: 12px; color: var(--mute); margin-top: 2px; }
+
+    /* Incidents */
+    .incident-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .incident-card {
+      background: var(--surface-card);
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .incident-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .incident-tag.lawsuit { background: var(--accent-red-soft); color: var(--accent-red); }
+    .incident-tag.fraud { background: var(--accent-purple-soft); color: var(--accent-purple); }
+    .incident-tag.money { background: var(--accent-blue-soft); color: var(--link-blue); }
+
+    .incident-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .incident-desc {
+      font-size: 14px;
+      color: var(--body);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .incident-meta {
+      font-size: 12px;
+      color: var(--mute);
+      border-top: 1px solid var(--hairline-soft);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+    }
+
+    /* Rant wall */
+    .rant-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rant-card {
+      background: var(--surface-card);
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      padding: 20px;
+    }
+
+    .rant-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .rant-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .rant-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--surface-soft);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      color: var(--mute);
+      font-weight: 700;
+    }
+
+    .rant-model {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--link-teal);
+      background: var(--accent-blue-soft);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .rant-text {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.6;
+    }
+
+    .rant-footer {
+      display: flex;
+      gap: 16px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--mute);
+      font-weight: 500;
+    }
+
+    /* CTA band */
+    .cta-band {
+      background: var(--surface-card);
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      padding: 48px;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      line-height: 1.33;
+      margin-bottom: 10px;
+    }
+
+    .cta-band p {
+      color: var(--body);
+      margin-bottom: 24px;
+      font-size: 16px;
+    }
+
+    /* Banners */
+    .info-strip {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .banner {
+      flex: 1;
+      min-width: 220px;
+      padding: 16px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .banner-blue { background: var(--accent-blue-soft); color: var(--ink); }
+    .banner-green { background: var(--accent-green-soft); color: var(--ink); }
+    .banner-red { background: var(--accent-red-soft); color: var(--ink); }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 40px 0;
+      font-size: 13px;
+      color: var(--mute);
+      background: var(--canvas);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      h1 { font-size: 28px; }
+      .incident-grid { grid-template-columns: 1fr; }
+      .board-header, .board-row {
+        grid-template-columns: 40px 1fr 80px;
+        gap: 10px;
+      }
+      .board-header > :nth-child(4),
+      .board-header > :nth-child(5),
+      .board-row > :nth-child(4),
+      .board-row > :nth-child(5) { display: none; }
+      .model-row {
+        grid-template-columns: 1fr 80px;
+        padding-left: 20px;
+      }
+      .model-row > :nth-child(3),
+      .model-row > :nth-child(4),
+      .model-row > :nth-child(5) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark">M</div>
+        <span>ModelCred</span>
+      </a>
+      <div class="nav-links">
+        <a href="#">厂商榜</a>
+        <a href="#">模型榜</a>
+        <a href="#">事故</a>
+        <a href="#">吐槽</a>
+      </div>
+      <div class="nav-cta">
+        <button class="btn btn-secondary">登录</button>
+        <button class="btn btn-primary">提交评分</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">🦔 社区共治的模型信用分</div>
+      <h1>大模型做错事，<br/>终于有人记账了</h1>
+      <p>ModelCred 是两个独立的公开榜单：厂商榜看公司整体可信度，模型榜看具体版本。Cloud 是模型系列，下面是独立计分的每个版本。</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary">查看榜单</button>
+        <button class="btn btn-secondary">提交吐槽</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="info-strip">
+        <div class="banner banner-green">✅ 厂商榜与模型榜分数独立计算</div>
+        <div class="banner banner-blue">💡 Cloud = 模型系列，下属版本独立评分</div>
+        <div class="banner banner-red">⚠️ 时间衰减：近期错误权重更高</div>
+      </div>
+
+      <div class="section-header">
+        <div>
+          <div class="section-title">厂商榜</div>
+          <div class="section-desc">按厂商综合可信度排名，与模型榜分数独立计算</div>
+        </div>
+        <button class="btn btn-secondary">全部厂商</button>
+      </div>
+      <div class="provider-board">
+        <div class="board-header">
+          <div>排名</div>
+          <div>厂商</div>
+          <div>信誉分</div>
+          <div>趋势</div>
+          <div>旗下模型</div>
+        </div>
+        <div class="board-row">
+          <div class="rank">01</div>
+          <div class="provider">
+            <div class="provider-icon">A</div>
+            <div>
+              <div class="provider-name">Anthropic</div>
+              <div class="provider-meta">美国 · 成立于 2021</div>
+            </div>
+          </div>
+          <div class="score high">84.5</div>
+          <div class="trend">↗ +1.2</div>
+          <div class="reviews">Claude 系列 · 6 款</div>
+        </div>
+        <div class="board-row">
+          <div class="rank">02</div>
+          <div class="provider">
+            <div class="provider-icon">O</div>
+            <div>
+              <div class="provider-name">OpenAI</div>
+              <div class="provider-meta">美国 · 成立于 2015</div>
+            </div>
+          </div>
+          <div class="score high">81.2</div>
+          <div class="trend">→ 0.0</div>
+          <div class="reviews">GPT / o 系列 · 9 款</div>
+        </div>
+        <div class="board-row">
+          <div class="rank">03</div>
+          <div class="provider">
+            <div class="provider-icon">D</div>
+            <div>
+              <div class="provider-name">DeepSeek</div>
+              <div class="provider-meta">中国 · 成立于 2023</div>
+            </div>
+          </div>
+          <div class="score mid">73.6</div>
+          <div class="trend">↘ -1.4</div>
+          <div class="reviews">DeepSeek 系列 · 4 款</div>
+        </div>
+        <div class="board-row">
+          <div class="rank">04</div>
+          <div class="provider">
+            <div class="provider-icon">M</div>
+            <div>
+              <div class="provider-name">Moonshot AI</div>
+              <div class="provider-meta">中国 · 成立于 2023</div>
+            </div>
+          </div>
+          <div class="score mid">69.8</div>
+          <div class="trend">↘ -0.6</div>
+          <div class="reviews">Kimi 系列 · 5 款</div>
+        </div>
+        <div class="board-row">
+          <div class="rank">05</div>
+          <div class="provider">
+            <div class="provider-icon">字</div>
+            <div>
+              <div class="provider-name">字节跳动</div>
+              <div class="provider-meta">中国 · 成立于 2012</div>
+            </div>
+          </div>
+          <div class="score low">56.4</div>
+          <div class="trend">↘ -3.8</div>
+          <div class="reviews">豆包系列 · 7 款</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">模型榜</div>
+          <div class="section-desc">按 Cloud（模型系列）分组，每个模型独立计分</div>
+        </div>
+        <button class="btn btn-secondary">全部模型</button>
+      </div>
+      <div class="clouds">
+        <div class="cloud-group">
+          <div class="cloud-header">
+            <div class="cloud-title">
+              <span>Cloud: Claude</span>
+              <span class="cloud-badge">Anthropic</span>
+            </div>
+            <div class="cloud-score">系列均分 <strong>84.5</strong></div>
+          </div>
+          <div class="model-row">
+            <div class="model">
+              <div class="model-icon">F</div>
+              <div>
+                <div class="model-name">Claude Fable 5</div>
+                <div class="model-meta">发布于 2025-05</div>
+              </div>
+            </div>
+            <div class="score high">89.2</div>
+            <div class="trend">↗ +2.1</div>
+            <div class="reviews">1,024</div>
+            <div class="action"><button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 10px;">评分</button></div>
+          </div>
+          <div class="model-row">
+            <div class="model">
+              <div class="model-icon">O</div>
+              <div>
+                <div class="model-name">Claude Opus 4.8</div>
+                <div class="model-meta">发布于 2025-02</div>
+              </div>
+            </div>
+            <div class="score high">85.7</div>
+            <div class="trend">↗ +0.5</div>
+            <div class="reviews">1,893</div>
+            <div class="action"><button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 10px;">评分</button></div>
+          </div>
+          <div class="model-row">
+            <div class="model">
+              <div class="model-icon">S</div>
+              <div>
+                <div class="model-name">Claude Sonnet 4.3.7</div>
+                <div class="model-meta">发布于 2024-10</div>
+              </div>
+            </div>
+            <div class="score high">82.1</div>
+            <div class="trend">→ 0.0</div>
+            <div class="reviews">2,847</div>
+            <div class="action"><button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 10px;">评分</button></div>
+          </div>
+        </div>
+
+        <div class="cloud-group">
+          <div class="cloud-header">
+            <div class="cloud-title">
+              <span>Cloud: GPT</span>
+              <span class="cloud-badge">OpenAI</span>
+            </div>
+            <div class="cloud-score">系列均分 <strong>79.3</strong></div>
+          </div>
+          <div class="model-row">
+            <div class="model">
+              <div class="model-icon">4</div>
+              <div>
+                <div class="model-name">GPT-4o</div>
+                <div class="model-meta">发布于 2024-05</div>
+              </div>
+            </div>
+            <div class="score high">82.1</div>
+            <div class="trend">→ 0.0</div>
+            <div class="reviews">4,192</div>
+            <div class="action"><button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 10px;">评分</button></div>
+          </div>
+          <div class="model-row">
+            <div class="model">
+              <div class="model-icon">o</div>
+              <div>
+                <div class="model-name">o1-preview</div>
+                <div class="model-meta">发布于 2024-09</div>
+              </div>
+            </div>
+            <div class="score high">80.5</div>
+            <div class="trend">↗ +1.3</div>
+            <div class="reviews">1,562</div>
+            <div class="action"><button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 10px;">评分</button></div>
+          </div>
+          <div class="model-row">
+            <div class="model">
+              <div class="model-icon">m</div>
+              <div>
+                <div class="model-name">GPT-4o-mini</div>
+                <div class="model-meta">发布于 2024-07</div>
+              </div>
+            </div>
+            <div class="score mid">74.3</div>
+            <div class="trend">↘ -0.8</div>
+            <div class="reviews">2,108</div>
+            <div class="action"><button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 10px;">评分</button></div>
+          </div>
+        </div>
+
+        <div class="cloud-group">
+          <div class="cloud-header">
+            <div class="cloud-title">
+              <span>Cloud: 豆包</span>
+              <span class="cloud-badge">字节跳动</span>
+            </div>
+            <div class="cloud-score">系列均分 <strong>54.8</strong></div>
+          </div>
+          <div class="model-row">
+            <div class="model">
+              <div class="model-icon">P</div>
+              <div>
+                <div class="model-name">豆包 Pro</div>
+                <div class="model-meta">发布于 2024-06</div>
+              </div>
+            </div>
+            <div class="score low">58.6</div>
+            <div class="trend">↘ -2.4</div>
+            <div class="reviews">1,204</div>
+            <div class="action"><button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 10px;">评分</button></div>
+          </div>
+          <div class="model-row">
+            <div class="model">
+              <div class="model-icon">L</div>
+              <div>
+                <div class="model-name">豆包 Lite</div>
+                <div class="model-meta">发布于 2024-03</div>
+              </div>
+            </div>
+            <div class="score low">52.1</div>
+            <div class="trend">↘ -1.9</div>
+            <div class="reviews">892</div>
+            <div class="action"><button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 10px;">评分</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">重大事故</div>
+          <div class="section-desc">影响较大、已被广泛报道或进入法律程序的模型相关事件</div>
+        </div>
+        <button class="btn btn-secondary">提交线索</button>
+      </div>
+      <div class="incident-grid">
+        <div class="incident-card">
+          <span class="incident-tag fraud">虚假信息</span>
+          <div class="incident-title">豆包向用户提供虚假联系方式</div>
+          <div class="incident-desc">用户询问机构联系方式时，模型生成了不存在的电话和地址，导致用户线下拜访扑空。</div>
+          <div class="incident-meta"><span>2024-11</span><span>待核实</span></div>
+        </div>
+        <div class="incident-card">
+          <span class="incident-tag money">经济损失</span>
+          <div class="incident-title">机票退改承诺"仅扣5%"，实际扣款远超</div>
+          <div class="incident-desc">AI 客服承诺退票手续费为票面价 5%，用户操作后实际扣款比例显著高于承诺，引发集体投诉。</div>
+          <div class="incident-meta"><span>2024-09</span><span>平台投诉</span></div>
+        </div>
+        <div class="incident-card">
+          <span class="incident-tag lawsuit">法律诉讼</span>
+          <div class="incident-title">Character.AI 青少年心理健康诉讼</div>
+          <div class="incident-desc">家长起诉该公司，称聊天机器人对青少年施加情感操纵并诱导自伤行为，案件已进入司法程序。</div>
+          <div class="incident-meta"><span>2024-10</span><span>美国 · 起诉中</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">最新吐槽</div>
+          <div class="section-desc">来自真实用户的近期评价，按时间排序</div>
+        </div>
+        <button class="btn btn-secondary">写一条</button>
+      </div>
+      <div class="rant-list">
+        <div class="rant-card">
+          <div class="rant-header">
+            <div class="rant-author">
+              <div class="rant-avatar">A</div>
+              <span>匿名用户</span>
+            </div>
+            <span class="rant-model">豆包 Pro · ★☆☆☆☆</span>
+          </div>
+          <div class="rant-text">让它帮我查一个门诊电话，结果给了我一个根本不存在的号码。打过去是空号，耽误了一下午。</div>
+          <div class="rant-footer"><span>2小时前</span><span>👍 23</span><span>💬 4</span></div>
+        </div>
+        <div class="rant-card">
+          <div class="rant-header">
+            <div class="rant-author">
+              <div class="rant-avatar">B</div>
+              <span>前端开发者</span>
+            </div>
+            <span class="rant-model">Claude Sonnet 4.3.7 · ★★★★★</span>
+          </div>
+          <div class="rant-text">连续三个月写业务代码最稳的模型，幻觉明显比竞品少。但长上下文偶尔会漏掉前面的约束。</div>
+          <div class="rant-footer"><span>5小时前</span><span>👍 56</span><span>💬 8</span></div>
+        </div>
+        <div class="rant-card">
+          <div class="rant-header">
+            <div class="rant-author">
+              <div class="rant-avatar">C</div>
+              <span>产品经理</span>
+            </div>
+            <span class="rant-model">GPT-4o · ★★★★☆</span>
+          </div>
+          <div class="rant-text">创意和推理都不错，但有时会非常自信地给出一个完全编造的论文引用，必须人工复核。</div>
+          <div class="rant-footer"><span>昨天</span><span>👍 41</span><span>💬 12</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-band">
+        <h2>你的一次评分，就是一次问责</h2>
+        <p>模型的错误不会自动消失，但可以被记录、被看见、被比较。</p>
+        <button class="btn btn-primary" style="height:44px;padding:0 28px;">立即参与评分</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2025 ModelCred · 公开数据，社区共治</div>
+      <div>GitHub · 算法说明 · 免责声明</div>
+    </div>
+  </footer>
+</body>
+</html>

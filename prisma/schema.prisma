@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Provider {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  country     String?
+  foundedAt   String?
+  description String?
+  website     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  clouds Cloud[]
+  models Model[]
+}
+
+model Cloud {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  provider   Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  providerId String
+
+  models Model[]
+
+  @@unique([providerId, slug])
+}
+
+model Model {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  version     String?
+  description String?
+  releasedAt  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  cloud   Cloud  @relation(fields: [cloudId], references: [id], onDelete: Cascade)
+  cloudId String
+
+  provider   Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  providerId String
+
+  ratings   Rating[]
+  reviews   Review[]
+  incidents Incident[]
+
+  @@unique([cloudId, slug])
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  score     Int // 1-5
+  tags      String? // comma separated
+  createdAt DateTime @default(now())
+
+  model   Model  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  modelId String
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  author    String   @default("匿名用户")
+  content   String
+  rating    Int      @default(3) // 1-5 stars shown
+  createdAt DateTime @default(now())
+
+  model   Model  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  modelId String
+
+  votes Vote[]
+}
+
+model Vote {
+  id    String @id @default(cuid())
+  value Int // +1 or -1
+
+  review   Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  reviewId String
+
+  @@unique([reviewId])
+}
+
+model Incident {
+  id          String   @id @default(cuid())
+  title       String
+  type        String // fraud | money | lawsuit | privacy | harm | other
+  description String
+  source      String?
+  status      String   @default("reported") // reported | verified | disputed | resolved
+  occurredAt  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  model   Model  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  modelId String
+}

@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.25);
+}
+
+/* Light theme = PostHog */
+:root {
+  --font-sans: var(--font-ibm-plex-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, Menlo, Monaco, Consolas, monospace;
+
+  --background: #eeefe9;
+  --foreground: #23251d;
+  --card: #ffffff;
+  --card-foreground: #23251d;
+  --popover: #ffffff;
+  --popover-foreground: #23251d;
+  --primary: #f7a501;
+  --primary-foreground: #23251d;
+  --secondary: #e5e7e0;
+  --secondary-foreground: #23251d;
+  --muted: #e5e7e0;
+  --muted-foreground: #6c6e63;
+  --accent: #fcfcfa;
+  --accent-foreground: #23251d;
+  --destructive: #cd4239;
+  --border: #bfc1b7;
+  --input: #bfc1b7;
+  --ring: #f7a501;
+  --radius: 0.5rem;
+
+  --success: #2c8c66;
+  --warning: #b17816;
+  --danger: #cd4239;
+  --info: #2c84e0;
+  --link: #1078a3;
+
+  --surface-soft: #e5e7e0;
+  --surface-doc: #fcfcfa;
+  --hairline-soft: #dcdfd2;
+}
+
+/* Dark theme = Linear */
+.dark {
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, Menlo, Monaco, Consolas, monospace;
+
+  --background: #010102;
+  --foreground: #f7f8f8;
+  --card: #0f1011;
+  --card-foreground: #f7f8f8;
+  --popover: #0f1011;
+  --popover-foreground: #f7f8f8;
+  --primary: #5e6ad2;
+  --primary-foreground: #ffffff;
+  --secondary: #141516;
+  --secondary-foreground: #f7f8f8;
+  --muted: #141516;
+  --muted-foreground: #8a8f98;
+  --accent: #18191a;
+  --accent-foreground: #f7f8f8;
+  --destructive: #ea384c;
+  --border: #23252a;
+  --input: #23252a;
+  --ring: #5e6ad2;
+  --radius: 0.75rem;
+
+  --success: #27a644;
+  --warning: #f5a623;
+  --danger: #ea384c;
+  --info: #57c1ff;
+  --link: #828fff;
+
+  --surface-soft: #141516;
+  --surface-doc: #18191a;
+  --hairline-soft: #34343a;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans antialiased;
+  }
+}
