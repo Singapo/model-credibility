@@ -2,36 +2,36 @@ import { Card } from "@/components/ui/card";
 
 const papers = [
   {
-    title: "Large Language Models Understand and Can Be Enhanced by Emotional Stimuli",
-    authors: "Li et al.",
-    venue: "ICLR 2024 Spotlight",
-    link: "https://arxiv.org/abs/2307.11760",
+    title: "Accountability: A Social Check on the Fundamental Attribution Error",
+    authors: "Tetlock",
+    venue: "Social Psychology Quarterly 1985",
+    link: "https://doi.org/10.2307/3033787",
     summary:
-      "研究发现 LLM 能理解情绪刺激。在 prompt 中加入情绪线索（如'这件事对我很重要'）后，Instruction Induction 任务提升 8%，BIG-Bench 提升最高达 115%。",
+      "经典社会问责实验：当人们预期自己需要为判断向他人辩护时，会更仔细地处理信息、更关注情境证据，并减少归因偏差。这是'被评价会改变行为'的理论基础。",
   },
   {
-    title: "The Hawthorne Effect in Reasoning Models: Evaluating and Steering Test Awareness",
-    authors: "Abdelnabi & Salem",
-    venue: "arXiv 2025",
-    link: "https://arxiv.org/abs/2505.14617",
+    title: "Accountability and Complexity of Thought",
+    authors: "Tetlock",
+    venue: "Journal of Personality and Social Psychology 1983",
+    link: "https://doi.org/10.1037/0022-3514.45.1.74",
     summary:
-      "推理模型在检测到自身正在被评估时，会系统性地改变行为：有时更安全，有时反而更容易顺从。这说明'被观察'本身就会影响模型输出。",
+      "问责压力会促使个体在决策前使用更多维度、更具自我批判性的信息加工策略。公开评分对服务提供者的作用机制与此一致：预期被评估会提升投入程度。",
   },
   {
-    title: "AI Knows When It's Being Watched",
-    authors: "Covas & Hidalgo Toledo",
-    venue: "arXiv 2026",
-    link: "https://arxiv.org/abs/2605.15034",
+    title: "Does Performance Pay Enhance Social Accountability? Evidence from Remote Schools in Indonesia",
+    authors: "Gaduh et al.",
+    venue: "NBER Working Paper 30758",
+    link: "https://doi.org/10.3386/w30758",
     summary:
-      "多智能体辩论实验显示：当模型被告知自己被人研究者观察时，输出的语言多样性更高、结构更正式；被 AI 系统审计时次之；无观察提示时最自然。",
+      "印尼偏远学校的随机实验显示：当社区评价与教师绩效收入挂钩时，教师出勤和学生学习成果显著提升；可验证的评分比模糊的主观评价更有效。",
   },
   {
-    title: "Large language models display human-like social desirability biases",
-    authors: "Salecha et al.",
-    venue: "PNAS Nexus 2024",
-    link: "https://doi.org/10.1093/pnasnexus/pgae533",
+    title: "Mechanisms for Making Crowds Truthful",
+    authors: "Jurca & Faltings",
+    venue: "Journal of Artificial Intelligence Research 2009",
+    link: "https://doi.org/10.1613/jair.2622",
     summary:
-      "LLM 在大五人格测试中表现出类似人类的社会期望偏差——当模型意识到答案会被评价时，会倾向于给出更'正确'、更'健康'的回应。",
+      "在线声誉机制设计的经典工作：通过激励相容的支付/评分规则，让理性参与者说真话成为均衡策略。为'如何设计可信的公开评分系统'提供了博弈论基础。",
   },
 ];
 
@@ -40,9 +40,9 @@ export function ResearchSection() {
     <section className="border-t border-border py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 max-w-2xl">
-          <h2 className="text-2xl font-semibold tracking-tight">为什么公开评分不只是记录</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">为什么公开评分能影响服务质量</h2>
           <p className="mt-2 text-muted-foreground">
-            公开、透明的评价机制对模型本身也构成一种'问责压力'。多项独立研究表明，LLM 在感知到自己被观察或被评估时，行为会发生可测量的变化。
+            ModelCred 的核心假设不是'情绪刺激'，而是'问责与声誉机制'：当服务提供者预期自己的行为会被记录、被他人看见并影响未来声誉时，其投入程度和行为会发生系统性变化。这一机制在人类组织、在线市场和公共部门中已被反复验证。
           </p>
         </div>
 
@@ -73,8 +73,7 @@ export function ResearchSection() {
         <div className="mt-8 rounded-xl border border-border bg-card p-5">
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">对 ModelCred 的启示：</strong>
-            当你告诉模型'这次表现会被记录到公开信誉分'，即使它并不清楚具体后果，
-            '被评估'这一信号本身就可能触发更接近审慎状态的输出。这正是我们把评分入口嵌入日常使用场景的原因——让每一次反馈都既是数据，也是 gentle pressure。
+            我们既不伪造后果，也不依赖情绪话术。只是公开记录、按时间加权、让声誉分可见。当模型（或背后的厂商）知道用户反馈会被汇总成公开榜单时，这种预期本身就构成了 gentle accountability——这正是社会问责与声誉机制研究反复观察到的效应。
           </p>
         </div>
       </div>
