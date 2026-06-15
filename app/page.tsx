@@ -6,6 +6,7 @@ import { ModelBoard } from "@/components/model-board";
 import { IncidentGrid } from "@/components/incident-grid";
 import { ReviewList } from "@/components/review-list";
 import { Hero } from "@/components/hero";
+import { ResearchSection } from "@/components/research-section";
 import { Footer } from "@/components/footer";
 
 export default async function HomePage() {
@@ -74,6 +75,7 @@ export default async function HomePage() {
         <ModelBoard clouds={cloudData} />
         <IncidentGrid incidents={incidents} />
         <ReviewList reviews={reviews} />
+        <ResearchSection />
       </main>
       <Footer />
     </>
