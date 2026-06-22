@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import type { Review, Model, Cloud, Provider } from "@/generated/prisma/client";
+import type { Review, Model, Cloud, Provider } from "@prisma/client";
 
 interface ReviewWithModel extends Review {
   model: Model & { cloud: Cloud; provider: Provider };

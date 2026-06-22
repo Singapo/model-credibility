@@ -10,6 +10,9 @@
 ## 本地启动
 
 ```bash
+# 1) 配置环境变量
+cp .env.example .env
+
 npm install
 npx prisma migrate dev
 npm run seed
@@ -17,6 +20,24 @@ npm run dev
 ```
 
 打开 http://localhost:3000。
+
+Windows PowerShell：
+
+```powershell
+Copy-Item .env.example .env
+npm install
+npx prisma migrate dev
+npm run seed
+npm run dev
+```
+
+> 说明：数据库为 SQLite，文件生成在 `prisma/dev.db`（已在 `.gitignore` 忽略）。
+
+## 参赛提交（TRAE AI 创造力大赛）
+
+- 报名+初赛：`06.16-07.15`；复赛：`07.21-08.09`；决赛：`08.21-08.22`。
+- 报名方式：在 TRAE 官方中文社区的「报名专区」发帖提交创意提案，并添加对应赛道标签；初赛需要提交一个“可运行、可体验”的 Demo。
+- 本项目适合作为「学习工作 / 造个新解法」或「社会服务 / 造种新体验」方向的参赛作品：用公开、社区共治的方式给大模型建立“信誉分”，让幻觉与引用造假有可追踪的成本。
 
 ## 评分 API
 

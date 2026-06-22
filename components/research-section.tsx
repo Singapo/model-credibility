@@ -40,7 +40,9 @@ export function ResearchSection() {
     <section className="border-t border-border py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 max-w-2xl">
-          <h2 className="text-2xl font-semibold tracking-tight">为什么告诉模型"会被评分"可能改变它的输出</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            为什么告诉模型“会被评分”可能改变它的输出
+          </h2>
           <p className="mt-2 text-muted-foreground">
             近年研究发现，LLM 能感知自己是否处于评估、测试或被观察的情境，并据此调整行为——这被称为 evaluation awareness 或 test awareness。ModelCred 的问责提示正是显式注入这一信号：让模型知道本次输出会被用户记录到公开榜单。
           </p>
@@ -73,7 +75,7 @@ export function ResearchSection() {
         <div className="mt-8 rounded-xl border border-border bg-card p-5">
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">对 ModelCred 的启示：</strong>
-            我们不伪造后果，也不使用欺骗性压力。只是真实声明：本次表现会被记录到公开信誉分。上述研究表明，模型对"被评估/被观察"信号具有可测量的行为敏感性——这正是 skill 中 L1-L3 问责提示能够产生 gentle pressure 的直接依据。
+            我们不伪造后果，也不使用欺骗性压力。只是真实声明：本次表现会被记录到公开信誉分。上述研究表明，模型对“被评估/被观察”信号具有可测量的行为敏感性——这正是 skill 中 L1-L3 问责提示能够产生 gentle pressure 的直接依据。
           </p>
         </div>
       </div>

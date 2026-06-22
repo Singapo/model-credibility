@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import type { Incident, Model, Cloud, Provider } from "@/generated/prisma/client";
+import type { Incident, Model, Cloud, Provider } from "@prisma/client";
 
 interface IncidentWithModel extends Incident {
   model: Model & { cloud: Cloud; provider: Provider };

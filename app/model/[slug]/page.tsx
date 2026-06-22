@@ -5,7 +5,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ScoreBadge } from "@/components/score-badge";
 import { RatingForm } from "@/components/rating-form";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -44,12 +45,16 @@ export default async function ModelPage({ params }: Props) {
       <main className="flex-1">
         <section className="border-b border-border py-12">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <Button variant="ghost" size="sm" asChild className="mb-6">
-              <Link href="/" className="gap-1">
-                <ArrowLeft className="h-4 w-4" />
-                返回榜单
-              </Link>
-            </Button>
+            <Link
+              href="/"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "sm" }),
+                "mb-6 gap-1"
+              )}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              返回榜单
+            </Link>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">

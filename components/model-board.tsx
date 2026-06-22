@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ScoreBadge } from "@/components/score-badge";
-import type { Model, Cloud, Provider, Rating } from "@/generated/prisma/client";
+import type { Model, Cloud, Provider, Rating } from "@prisma/client";
 
 interface ModelWithScore extends Model {
   ratings: Rating[];
