@@ -174,7 +174,7 @@ export default async function ModelPage({ params }: Props) {
                   你的评分会影响该模型的可信度分数。
                 </p>
                 <div className="mt-4">
-                  <RatingForm modelId={model.id} modelName={model.name} />
+                  <RatingForm modelSlug={slug} modelName={model.name} />
                 </div>
               </div>
             </div>
