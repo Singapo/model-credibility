@@ -1,8 +1,8 @@
 # ModelCred 项目进度存档
 
-> 存档时间：2026-06-15  
+> 存档时间：2026-06-22  
 > 当前分支：`master`  
-> 最新提交：`c70e99a feat: github commit anchoring for free data snapshots`
+> 最新提交：`27f8fa5 fix: provider 404 and rating form submission`
 
 ---
 
@@ -53,36 +53,35 @@
 ## 三、待决策 / 待执行
 
 ### 1. 真实评分数据
-**状态**：当前数据库里仍是 `prisma/seed.ts` 生成的测试评分，不是真实用户评分。  
-**可选方案**：
-- A. 保留测试数据，等部署上线后自然积累真实评分
-- B. 清掉测试评分/吐槽，从零开始
-- C. 用户手动录入几条真实评分作为起点
+**状态**：当前 Neon 数据库里仍是 `prisma/seed.ts` 生成的 **Demo 数据**，不是真实用户评分。  
+**建议方案**：
+- **保留 Demo 数据**：线上展示效果更好，适合参赛 Demo；同时开启真实评分入口，让自然流量逐步替换
+- 清空从零开始：数据更干净，但首页会显得空旷
+- 手动录入几条真实评分作为起点：需要额外准备真实案例
+
+**当前选择**：保留 Demo 数据，等待真实用户评分自然积累。
 
 ### 2. 部署上线
-**状态**：Vercel 账号申诉中，需等待 24 小时，暂时无法使用。  
-**可选替代方案**：
-- A. **Netlify**（最像 Vercel，免费，今天可用）+ SQLite 提交到仓库
-  - 问题：serverless 容器不持久，线上评分可能在重新部署后丢失
-- B. **GitHub Pages**（纯静态导出）
-  - 问题：评分功能失效，只能展示
-- C. **Render / Railway / Fly.io**
-  - 问题：免费额度有限，长期可能收费，配置更麻烦
+**状态**：✅ 已部署到 Vercel，数据库使用 Neon PostgreSQL。  
+**线上地址**：https://model-credibility.vercel.app（主域名）  
+**最近一次部署**：commit `27f8fa5`，状态 `success`。
 
-**用户决策记录**：用户表示"先这样"，下次再说。
+**后续可选**：
+- 绑定自定义域名 `assemblyofgodkissimmee.asia` 的二级域名
+- 配置 Vercel Analytics / Speed Insights
 
 ### 3. 域名绑定
-**状态**：用户持有 `assemblyofgodkissimmee.asia`，希望 AI 信誉榜能放到该域名下并保留原网页。  
+**状态**：待决策。用户持有 `assemblyofgodkissimmee.asia`，可考虑绑定二级域名如 `credibility.assemblyofgodkissimmee.asia`。  
 **待确认**：
-- 域名注册商/ DNS 管理后台是哪家？
-- 希望用哪个二级域名？（如 `credibility.assemblyofgodkissimmee.asia`）
-- 原网页当前托管在哪里？
+- 域名 DNS 管理后台是哪家？
+- 希望用哪个二级域名？
+- 原网页当前托管在哪里，是否需要保留？
 
 ### 4. 数据库持久化（长期）
-**状态**：目前 SQLite 文件 `.gitignore` 排除，真实数据只存在本地。  
-**长期建议**：
-- 如果继续用 serverless 部署，建议迁移到 PostgreSQL（如 Neon 免费版）
-- 如果用 Fly.io / Railway，可保留 SQLite 并加持久化卷
+**状态**：✅ 已迁移到 Neon PostgreSQL。  
+- 应用连接串使用带连接池的 `DATABASE_URL`
+- 迁移/直连使用 `DIRECT_URL`
+- 本地开发仍可用 `.env` 指向同一 Neon 数据库，或切换回 SQLite 做独立测试
 
 ---
 
@@ -92,7 +91,8 @@
 - 语言：TypeScript 5
 - 样式：Tailwind CSS v4 + shadcn/ui
 - ORM：Prisma 6.19.3
-- 数据库：SQLite（本地）
+- 数据库：PostgreSQL（Neon）
+- 部署：Vercel
 - 包管理：npm
 - 仓库：https://github.com/Singapo/model-credibility
 
@@ -123,6 +123,9 @@ git push
 ## 六、最近提交
 
 ```
+27f8fa5 fix: provider 404 and rating form submission
+d367951 feat: migrate from SQLite to PostgreSQL for Vercel deployment
+fe7de96 docs: add PROGRESS.md with current status and pending decisions
 c70e99a feat: github commit anchoring for free data snapshots
 7b6001d fix: use LLM evaluation-awareness literature as theoretical basis
 c1ad7ae fix: replace research citations with accountability/reputation literature; expand skill triggers inspired by OpenPUA
@@ -135,9 +138,9 @@ c60b739 feat: add accountability prompt mode and research citations
 
 ## 七、注意事项
 
-- 当前 `prisma/dev.db` 仍在 `.gitignore` 中，未提交到 GitHub。
-- GitHub Action 每天自动生成的快照基于 **seed 测试数据**，不是真实评分。
+- 数据库已迁移到 **Neon PostgreSQL**，`prisma/dev.db` 不再使用，但仍在 `.gitignore` 中作为本地备份。
+- GitHub Action 每天自动生成的快照基于 **Demo 数据**，不是真实评分。
 - 要锚定真实评分，需要：
-  1. 本地运行 `npm run snapshot` 生成真实数据快照
+  1. 线上积累足够真实评分后，本地运行 `npm run snapshot` 生成真实数据快照
   2. `git add data/snapshots/` 并 push
-  3. 或部署上线后把 workflow 改成从线上 `/api/snapshot` 拉取
+  3. 或把 workflow 改成从线上 `/api/snapshot` 拉取

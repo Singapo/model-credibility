@@ -4,14 +4,20 @@
 
 - **首页**：厂商榜 + 按 Cloud 分组的模型榜 + 重大事故 + 最新吐槽
 - **模型详情页**：信誉分、30 天趋势、评分分布、相关事故、评价
+- **厂商详情页**：综合信誉分、旗下模型列表
 - **评分 API**：无需打开网页即可通过 CLI / Skill 提交评分
 - **双主题**：Light（PostHog 风格）/ Dark（Linear 风格）
+
+## 线上地址
+
+https://model-credibility.vercel.app
 
 ## 本地启动
 
 ```bash
-# 1) 配置环境变量
+# 1) 配置环境变量（Neon PostgreSQL）
 cp .env.example .env
+# 然后填写 DATABASE_URL 和 DIRECT_URL
 
 npm install
 npx prisma migrate dev
@@ -24,14 +30,17 @@ npm run dev
 Windows PowerShell：
 
 ```powershell
+# 1) 配置环境变量（Neon PostgreSQL）
 Copy-Item .env.example .env
+# 然后填写 DATABASE_URL 和 DIRECT_URL
+
 npm install
 npx prisma migrate dev
 npm run seed
 npm run dev
 ```
 
-> 说明：数据库为 SQLite，文件生成在 `prisma/dev.db`（已在 `.gitignore` 忽略）。
+> 说明：数据库为 Neon PostgreSQL，本地开发也指向同一数据库；如需独立测试，可在 `.env` 中临时改回 SQLite。
 
 ## 参赛提交（TRAE AI 创造力大赛）
 
@@ -114,8 +123,9 @@ python scripts\rate.py
 
 - Next.js 15 + React 18 + TypeScript
 - Tailwind CSS v4 + shadcn/ui
-- Prisma 6 + SQLite
+- Prisma 6 + PostgreSQL（Neon）
 - next-themes（双主题）
+- 部署：Vercel
 
 ## 数据与算法
 

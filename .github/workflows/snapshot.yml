@@ -27,16 +27,16 @@ jobs:
         run: npx prisma generate
 
       - name: Setup database
-        run: |
-          mkdir -p prisma
-          touch prisma/dev.db
-          npx prisma migrate deploy
-
-      - name: Seed demo data
-        run: npm run seed
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
 
       - name: Generate snapshot
         run: npm run snapshot
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
 
       - name: Commit snapshot
         run: |
