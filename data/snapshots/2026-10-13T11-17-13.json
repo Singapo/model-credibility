@@ -1,0 +1,1016 @@
+{
+  "generatedAt": "2026-10-13T11:17:13.750Z",
+  "commit": "164829c3221beb9613288bfdecc90619546dedd2",
+  "summary": {
+    "providerCount": 5,
+    "modelCount": 8,
+    "ratingCount": 100,
+    "reviewCount": 5,
+    "incidentCount": 3
+  },
+  "providers": [
+    {
+      "slug": "anthropic",
+      "name": "Anthropic",
+      "score": 85.9,
+      "trend": 0,
+      "modelCount": 3,
+      "ratingCount": 670
+    },
+    {
+      "slug": "openai",
+      "name": "OpenAI",
+      "score": 77.8,
+      "trend": 0,
+      "modelCount": 3,
+      "ratingCount": 902
+    },
+    {
+      "slug": "bytedance",
+      "name": "字节跳动",
+      "score": 35,
+      "trend": 0,
+      "modelCount": 2,
+      "ratingCount": 240
+    },
+    {
+      "slug": "deepseek",
+      "name": "DeepSeek",
+      "score": null,
+      "trend": 0,
+      "modelCount": 0,
+      "ratingCount": 0
+    },
+    {
+      "slug": "moonshot",
+      "name": "Moonshot AI",
+      "score": null,
+      "trend": 0,
+      "modelCount": 0,
+      "ratingCount": 0
+    }
+  ],
+  "models": [
+    {
+      "slug": "fable-5",
+      "name": "Claude Fable 5",
+      "providerSlug": "anthropic",
+      "providerName": "Anthropic",
+      "cloudSlug": "claude",
+      "cloudName": "Claude",
+      "score": 91.3,
+      "trend": 0,
+      "ratingCount": 120
+    },
+    {
+      "slug": "opus-4-8",
+      "name": "Claude Opus 4.8",
+      "providerSlug": "anthropic",
+      "providerName": "Anthropic",
+      "cloudSlug": "claude",
+      "cloudName": "Claude",
+      "score": 85,
+      "trend": 0,
+      "ratingCount": 200
+    },
+    {
+      "slug": "sonnet-4-3-7",
+      "name": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic",
+      "providerName": "Anthropic",
+      "cloudSlug": "claude",
+      "cloudName": "Claude",
+      "score": 84.5,
+      "trend": 0,
+      "ratingCount": 350
+    },
+    {
+      "slug": "gpt-4o",
+      "name": "GPT-4o",
+      "providerSlug": "openai",
+      "providerName": "OpenAI",
+      "cloudSlug": "gpt",
+      "cloudName": "GPT",
+      "score": 80.5,
+      "trend": 0,
+      "ratingCount": 502
+    },
+    {
+      "slug": "o1-preview",
+      "name": "o1-preview",
+      "providerSlug": "openai",
+      "providerName": "OpenAI",
+      "cloudSlug": "gpt",
+      "cloudName": "GPT",
+      "score": 79.9,
+      "trend": 0,
+      "ratingCount": 180
+    },
+    {
+      "slug": "gpt-4o-mini",
+      "name": "GPT-4o-mini",
+      "providerSlug": "openai",
+      "providerName": "OpenAI",
+      "cloudSlug": "gpt",
+      "cloudName": "GPT",
+      "score": 69.9,
+      "trend": 0,
+      "ratingCount": 220
+    },
+    {
+      "slug": "doubao-pro",
+      "name": "豆包 Pro",
+      "providerSlug": "bytedance",
+      "providerName": "字节跳动",
+      "cloudSlug": "doubao",
+      "cloudName": "豆包",
+      "score": 38.2,
+      "trend": 0,
+      "ratingCount": 150
+    },
+    {
+      "slug": "doubao-lite",
+      "name": "豆包 Lite",
+      "providerSlug": "bytedance",
+      "providerName": "字节跳动",
+      "cloudSlug": "doubao",
+      "cloudName": "豆包",
+      "score": 29.8,
+      "trend": 0,
+      "ratingCount": 90
+    }
+  ],
+  "recentRatings": [
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-22T05:54:00.921Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": "回答准确",
+      "createdAt": "2026-06-22T05:20:09.615Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 2,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:47.162Z",
+      "modelSlug": "doubao-lite",
+      "modelName": "豆包 Lite",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:47.162Z",
+      "modelSlug": "doubao-lite",
+      "modelName": "豆包 Lite",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-22T04:47:43.910Z",
+      "modelSlug": "fable-5",
+      "modelName": "Claude Fable 5",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-21T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 2,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:47.162Z",
+      "modelSlug": "doubao-lite",
+      "modelName": "豆包 Lite",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-20T04:47:43.910Z",
+      "modelSlug": "fable-5",
+      "modelName": "Claude Fable 5",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-19T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-19T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-19T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-19T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-19T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-19T04:47:43.910Z",
+      "modelSlug": "fable-5",
+      "modelName": "Claude Fable 5",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:47.162Z",
+      "modelSlug": "doubao-lite",
+      "modelName": "豆包 Lite",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 2,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:47.162Z",
+      "modelSlug": "doubao-lite",
+      "modelName": "豆包 Lite",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 2,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:47.162Z",
+      "modelSlug": "doubao-lite",
+      "modelName": "豆包 Lite",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:45.611Z",
+      "modelSlug": "o1-preview",
+      "modelName": "o1-preview",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:44.346Z",
+      "modelSlug": "opus-4-8",
+      "modelName": "Claude Opus 4.8",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-18T04:47:43.910Z",
+      "modelSlug": "fable-5",
+      "modelName": "Claude Fable 5",
+      "providerSlug": "anthropic"
+    },
+    {
+      "score": 2,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:47.162Z",
+      "modelSlug": "doubao-lite",
+      "modelName": "豆包 Lite",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 2,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:46.755Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro",
+      "providerSlug": "bytedance"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:46.027Z",
+      "modelSlug": "gpt-4o-mini",
+      "modelName": "GPT-4o-mini",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 3,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 5,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:45.191Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o",
+      "providerSlug": "openai"
+    },
+    {
+      "score": 4,
+      "tags": null,
+      "createdAt": "2026-06-17T04:47:44.760Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7",
+      "providerSlug": "anthropic"
+    }
+  ],
+  "recentReviews": [
+    {
+      "author": "匿名用户",
+      "content": "测试评分提交",
+      "rating": 3,
+      "createdAt": "2026-06-22T05:54:00.921Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o"
+    },
+    {
+      "author": "匿名用户",
+      "content": "线上 API 测试",
+      "rating": 5,
+      "createdAt": "2026-06-22T05:20:09.615Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o"
+    },
+    {
+      "author": "匿名用户",
+      "content": "让它帮我查一个门诊电话，结果给了我一个根本不存在的号码。打过去是空号，耽误了一下午。",
+      "rating": 1,
+      "createdAt": "2026-06-22T02:23:47.573Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro"
+    },
+    {
+      "author": "前端开发者",
+      "content": "连续三个月写业务代码最稳的模型，幻觉明显比竞品少。但长上下文偶尔会漏掉前面的约束。",
+      "rating": 5,
+      "createdAt": "2026-06-21T23:59:47.573Z",
+      "modelSlug": "sonnet-4-3-7",
+      "modelName": "Claude Sonnet 4.3.7"
+    },
+    {
+      "author": "产品经理",
+      "content": "创意和推理都不错，但有时会非常自信地给出一个完全编造的论文引用，必须人工复核。",
+      "rating": 4,
+      "createdAt": "2026-06-21T04:47:47.573Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o"
+    }
+  ],
+  "recentIncidents": [
+    {
+      "title": "豆包向用户提供虚假联系方式",
+      "type": "fraud",
+      "status": "reported",
+      "occurredAt": "2024-11",
+      "createdAt": "2026-06-22T04:47:47.983Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro"
+    },
+    {
+      "title": "机票退改承诺\"仅扣5%\"，实际扣款远超",
+      "type": "money",
+      "status": "reported",
+      "occurredAt": "2024-09",
+      "createdAt": "2026-06-22T04:47:47.983Z",
+      "modelSlug": "doubao-pro",
+      "modelName": "豆包 Pro"
+    },
+    {
+      "title": "Character.AI 青少年心理健康诉讼",
+      "type": "lawsuit",
+      "status": "reported",
+      "occurredAt": "2024-10",
+      "createdAt": "2026-06-22T04:47:47.983Z",
+      "modelSlug": "gpt-4o",
+      "modelName": "GPT-4o"
+    }
+  ]
+}
